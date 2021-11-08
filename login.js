@@ -1,5 +1,5 @@
-var URL1 = 'http://127.0.0.1/flight-booking-api/api/admin-login.php'; //Main API
-var URL2 = 'http://127.0.0.1/flight-booking-backup-api/api/admin-login.php'; //Backup API
+var URL1 = 'http://127.0.0.1/flight-booking-api/api/login.php'; //Main API
+var URL2 = 'http://127.0.0.1/flight-booking-backup-api/api/login.php'; //Backup API
 
 $("#login-btn").click(function(){
     var email = $("#email").val();
@@ -31,6 +31,7 @@ function LoginResponseChecking(URL)
     request.open('POST', URL, true)
     request.onload = function() 
     {
+
         if(request.status >=200 && request.status < 400) 
         {
             RegisterUser(URL);
@@ -65,8 +66,8 @@ function RegisterUser(URL)
         const result = JSON.stringify(data.message);
         if(result == "\"Authentication successful\"") {
             alert(result);
-            setCookie("admin", 'true', 7)
-            window.location.href = "../../admin.html";
+            setCookie("email", email, 7)
+            window.location.href = "../../index.html";
         } else {
             alert(result);
         }
